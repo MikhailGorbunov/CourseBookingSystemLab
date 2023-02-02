@@ -25,14 +25,27 @@ public class Course{
     @OneToMany(mappedBy = "course")
     private List<Booking> bookings;
 
+    @JsonBackReference
+    @OneToMany(mappedBy = "course")
+    private List<Course> course;
+
     public Course(String name, String town, int starRating) {
         this.name = name;
         this.bookings = new ArrayList<>();
+        this.course = new ArrayList<>();
         this.town = town;
         this.starRating = starRating;
     }
 
     public Course(){}
+
+    public List<Course> getCourse() {
+        return course;
+    }
+
+    public void setCourse(List<Course> course) {
+        this.course = course;
+    }
 
     public Long getId() {
         return id;
